@@ -1,5 +1,6 @@
 # bird_detect
-Detect bird species in photos using YOLOv3
+Detect NZ bird species in photos using YOLOv3
+Done as a capstone project for a grad school class I took on deep learning.
 
 https://user-images.githubusercontent.com/95381252/197306200-b7d074d6-a21c-46dc-a082-eadf80ba2b06.mp4
 
