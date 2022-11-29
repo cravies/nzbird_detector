@@ -1,8 +1,16 @@
-# bird_detect
-Detect NZ bird species in photos using YOLOv3.
-Done as a capstone project for a grad school class I took on deep learning.
+# 🦜 nzbird_detector 🦜
+Detect NZ bird species in photos using YOLOv3 or v7.
 
 https://user-images.githubusercontent.com/95381252/197306200-b7d074d6-a21c-46dc-a082-eadf80ba2b06.mp4
+
+# Basic Explanation
+- I used the pretrained YOLO models as they are state of the art for object detection and they are easy to train on a custom problem
+- The main problem is making a pipeline where you can efficiently scrape and label data
+- The models take about 1000 labeled images for each class
+- Thus I wrote a pipeline to scrape data on select birds from <a href="https://www.macaulaylibrary.org">Macaulay Library</a> (bird db), label that data, and perform augmentation to increase the dataset size
+- This pipeline works with any bird species (not just NZ birds), you just need to download csv files of your species from <a href="https://www.macaulaylibrary.org">Macaulay db</a>. (This requires an account).
+- I trained the model on google colab pro, so the script is written to use this environment, grabbing the training files from my google drive. If you train it off of colab you will have to change the script to point to your own local data directory.
+- To get good results you may have to tweak the conf_thresh and iou_thresh hyperparameters: these are command line arguments that represent two different types of confidence threshold the model has to reach before it will predict a "hit".
 
 # Downloading, augmenting and labelling data
 
@@ -10,11 +18,11 @@ https://user-images.githubusercontent.com/95381252/197306200-b7d074d6-a21c-46dc-
 ```bash
 git clone https://github.com/Cartucho/OpenLabeling
 ```
-- Move the files from /label/ into the OpenLabeling repo /OpenLabeling/main
-- Now get the csv of birds you want to scrape and download from the macaulay library.
-- I already have some in the repository. 
-- You have to make an account to download big csv.
-- Edit the download_birds.py to include these csv.
+- Now move the files from /label/ into the OpenLabeling repo /OpenLabeling/main
+- Get the csv of birds you want to scrape and download from the <a href="https://www.macaulaylibrary.org">Macaulay library.</a>
+- There are already some example csvs in the repository if you want to know what they look like.
+- You have to make an account to download big csvs with hundreds of birds, which YOLO needs to work.
+- Edit the download_birds.py to include these csvs.
 - Now to download those bird images run 
 ```bash
 make all
@@ -25,7 +33,7 @@ to increase the size of the dataset.
 ```
 make move
 ```
-- Now change to the openlabelling directory and label some training images with
+- Now change to the openlabelling directory and label some training images with OpenLabelling 
 ```
 make tr
 ```
@@ -38,8 +46,8 @@ make te
 make v
 ```
 
-# Training model 
-- Download the ipynb file bird_YOLO_v3.ipynb
+# Training model (assumes you are using colab. If not, just change the dataset location in script)
+- Download either of the .ipynb files (v3 or v7)
 - Upload this file to colab to run
 - Compress your train,test,val folders (including "out" label folders) in a folder called 'bird_data'. Upload it to your google drive
 - Note: the train folder will need to be compressed otherwise it will be too large.
