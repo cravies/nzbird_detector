@@ -1,7 +1,9 @@
 # 🦜 nzbird_detector 🦜
 Detect NZ bird species in photos using YOLOv3 or v7.
 <br></br>
-See "tech_report.pdf" for a more detailed explanation of how it works.
+See "tech_report.pdf" for theoretical documentation.
+<br></br>
+"slides.pdf" contains slides for an explanation of object detection, CNNs, and YOLO.
 
 https://user-images.githubusercontent.com/95381252/197306200-b7d074d6-a21c-46dc-a082-eadf80ba2b06.mp4
 
